@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import UseStateDemo from './components/UseStateDemo';
+import UseEffectDemo from './components/UseEffectDemo';
+import UseContextDemo from './components/UseContextDemo';
 import './App.css';
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetch('http://localhost:5000/')
-      .then(response => response.text())
-      .then(data => setMessage(data));
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>{message}</p>
-      </header>
+    <Router>
+    <div className="app-container">
+        <div className="main-content">
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/usestate" element={<UseStateDemo />} />
+                <Route path="/useeffect" element={<UseEffectDemo />} />
+                <Route path="/usecontext" element={<UseContextDemo />} />
+            </Routes>
+        </div>
     </div>
+</Router>
   );
 }
 
